@@ -22,7 +22,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
 /* ---------------------------- Data (contenu) ---------------------------- */
 
-const SKILLS_TECH = ['Java', 'Angular', 'Kotlin / Android', 'Unity & C#', 'SQLite / Room', 'Retrofit', 'Hilt', 'Git & GitLab']
+const SKILLS_TECH = ['Java', 'Angular', 'Kotlin / Android', 'Unity & C#', 'Git & GitLab']
 const SKILLS_SOFT = ["Adaptabilité", 'Organisation', "Travail d'équipe", 'Communication efficace', 'Gestion de groupe', 'Courtoisie']
 
 const PROJECTS = [
@@ -90,8 +90,7 @@ export default function App() {
           <p className="eyebrow">Portfolio · 2026</p>
           <h1 className="hero-title">Rose Alexandra Cirius</h1>
           <p className="hero-tagline">
-            Étudiante en informatique, développeuse Android et Unity — en route vers un
-            baccalauréat en génie des opérations et de la logistique.
+            Étudiante en technique de l'informatique
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href="#projets">Voir mes projets</a>
@@ -172,7 +171,7 @@ export default function App() {
 
         {/* -------------------------------- PROJETS ------------------------------- */}
         <section id="projets" className="section reveal band band-cream">
-          <Sakura />
+          <Flourish />
           <h2 className="section-title">Projets</h2>
           <div className="project-grid">
             {PROJECTS.map((p) => (
@@ -202,7 +201,7 @@ export default function App() {
 
         {/* -------------------------------- CONTACT ------------------------------- */}
         <section id="contact" className="section reveal contact band band-milk">
-          <Sakura />
+          <Flourish />
           <h2 className="section-title">Contact</h2>
           <p className="contact-text">
             Une question, une offre, ou juste envie de jaser d'un projet ? Écris-moi.
@@ -223,6 +222,7 @@ export default function App() {
             >
               GitHub
             </a>
+            
           </div>
         </section>
       </main>
