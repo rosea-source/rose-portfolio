@@ -9,6 +9,15 @@ const Flourish = () => (
   </svg>
 )
 
+const Sakura = () => (
+  <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true" className="flourish sakura">
+    <g fill="var(--sakura)">
+      <path d="M20 2c4 0 5 4 3 7 3-2 7 0 6 4-1 3-5 3-7 2 2 3 0 7-4 7s-6-4-4-7c-2 1-6 1-7-2-1-4 3-6 6-4-2-3-1-7 3-7 1-1 2-1 4 0Z" />
+    </g>
+    <circle cx="20" cy="19" r="3" fill="var(--wine)" />
+  </svg>
+)
+
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
 /* ---------------------------- Data (contenu) ---------------------------- */
@@ -77,9 +86,9 @@ export default function App() {
 
       <main>
         {/* -------------------------------- HERO -------------------------------- */}
-        <section id="accueil" className="hero">
+        <section id="accueil" className="hero band band-cream">
           <p className="eyebrow">Portfolio · 2026</p>
-          <h1 className="hero-title">Rose Alexandra <span className="script">Cirius</span></h1>
+          <h1 className="hero-title">Rose Alexandra Cirius</h1>
           <p className="hero-tagline">
             Étudiante en informatique, développeuse Android et Unity — en route vers un
             baccalauréat en génie des opérations et de la logistique.
@@ -91,44 +100,49 @@ export default function App() {
         </section>
 
         {/* ------------------------------- A PROPOS ------------------------------ */}
-        <section id="a-propos" className="section reveal">
+        <section id="a-propos" className="section reveal band band-milk">
           <Flourish />
           <h2 className="section-title">À propos</h2>
           <div className="about-grid">
-            <p className="about-text">
-              Autonome et enthousiaste, mes premières expériences m'ont permis de renforcer mes acquis
-              et d'apprivoiser différents outils et techniques. Je m'intègre facilement dans de
-              nouveaux contextes de travail grâce à un vrai esprit d'équipe et de bonnes capacités
-              d'écoute et de communication.
-            </p>
-            <div className="skills">
-              <div className="skill-block">
-                <h3>Technique</h3>
-                <ul className="chip-list">
-                  {SKILLS_TECH.map((s) => <li key={s} className="chip">{s}</li>)}
-                </ul>
+            <div className="about-col">
+              <p className="about-text">
+                Autonome et enthousiaste, mes premières expériences m'ont permis de renforcer mes acquis
+                et d'apprivoiser différents outils et techniques. Je m'intègre facilement dans de
+                nouveaux contextes de travail grâce à un vrai esprit d'équipe et de bonnes capacités
+                d'écoute et de communication.
+              </p>
+              <div className="skills">
+                <div className="skill-block">
+                  <h3>Technique</h3>
+                  <ul className="chip-list">
+                    {SKILLS_TECH.map((s) => <li key={s} className="chip">{s}</li>)}
+                  </ul>
+                </div>
+                <div className="skill-block">
+                  <h3>Savoir-être</h3>
+                  <ul className="chip-list">
+                    {SKILLS_SOFT.map((s) => <li key={s} className="chip chip-alt">{s}</li>)}
+                  </ul>
+                </div>
+                <div className="skill-block">
+                  <h3>Certifications & langues</h3>
+                  <ul className="chip-list">
+                    <li className="chip chip-alt">Secourisme général</li>
+                    <li className="chip chip-alt">Formation de gardiennage</li>
+                    <li className="chip chip-alt">Français — langue maternelle</li>
+                    <li className="chip chip-alt">Anglais — B2</li>
+                  </ul>
+                </div>
               </div>
-              <div className="skill-block">
-                <h3>Savoir-être</h3>
-                <ul className="chip-list">
-                  {SKILLS_SOFT.map((s) => <li key={s} className="chip chip-alt">{s}</li>)}
-                </ul>
-              </div>
-              <div className="skill-block">
-                <h3>Certifications & langues</h3>
-                <ul className="chip-list">
-                  <li className="chip chip-alt">Secourisme général</li>
-                  <li className="chip chip-alt">Formation de gardiennage</li>
-                  <li className="chip chip-alt">Français — langue maternelle</li>
-                  <li className="chip chip-alt">Anglais — B2</li>
-                </ul>
-              </div>
+            </div>
+            <div className="about-art">
+              <img src={asset('illus-coding.svg')} alt="Illustration : personnage qui programme" />
             </div>
           </div>
         </section>
 
         {/* ------------------------------- FORMATION ------------------------------ */}
-        <section id="formation" className="section reveal">
+        <section id="formation" className="section reveal band band-cream">
           <Flourish />
           <h2 className="section-title">Formation</h2>
           <div className="formation-card">
@@ -142,7 +156,7 @@ export default function App() {
         </section>
 
         {/* ---------------------------- RECHERCHE DE STAGE ------------------------ */}
-        <section id="stage" className="section reveal stage">
+        <section id="stage" className="section reveal stage band band-milk">
           <div className="stage-grid">
             <img src={asset('illus-job-hunt.svg')} alt="Illustration : recherche d'opportunités" className="stage-illus" />
             <div>
@@ -157,8 +171,8 @@ export default function App() {
         </section>
 
         {/* -------------------------------- PROJETS ------------------------------- */}
-        <section id="projets" className="section reveal">
-          <Flourish />
+        <section id="projets" className="section reveal band band-cream">
+          <Sakura />
           <h2 className="section-title">Projets</h2>
           <div className="project-grid">
             {PROJECTS.map((p) => (
@@ -187,8 +201,8 @@ export default function App() {
         </section>
 
         {/* -------------------------------- CONTACT ------------------------------- */}
-        <section id="contact" className="section reveal contact">
-          <Flourish />
+        <section id="contact" className="section reveal contact band band-milk">
+          <Sakura />
           <h2 className="section-title">Contact</h2>
           <p className="contact-text">
             Une question, une offre, ou juste envie de jaser d'un projet ? Écris-moi.
@@ -213,7 +227,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="footer">
+      <footer className="footer band band-cream">
         <p>Rose Alexandra Cirius — {new Date().getFullYear()}</p>
       </footer>
     </>
