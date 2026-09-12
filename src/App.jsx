@@ -39,7 +39,7 @@ const PROJECTS = [
     nom: 'Mon Calendrier Santé et Fitness',
     role: 'Contribution partagée',
     images: [
-      { src: asset('illus-coding.svg'), alt: 'Illustration : application mobile' },
+      { src: asset('android.jpg'), alt: 'Illustration : application mobile' },
     ],
     description: "Application Android de suivi d'activité physique et de poids : calendrier mensuel des séances, ajout de séances avec type/durée/intensité, historique et suivi du poids dans le temps.",
     contribution: "Développement de l'écran d'accueil (calendrier mensuel, indicateurs, préférences) et de la base de données SQLite ; soutien sur l'écran d'ajout de séance.",
@@ -79,10 +79,10 @@ const EXPERIENCE = [
     points: ["Conception et animation d'activités thématiques pour des groupes de 7 à 12 ans", 'Gestion de groupe et planification hebdomadaire en équipe'],
   },
   {
-    titre: 'Caissière',
+    titre: 'Commis de plancher',
     lieu: 'Village des Valeurs, Saint-Léonard',
     date: 'Août 2025 — Juin 2026',
-    points: ['Accueil et service à la clientèle', 'Organisation et présentation des produits'],
+    points: ['Réapprovisionnement et organisation des rayons', 'Présentation des produits en magasin'],
   },
   {
     titre: 'Caissière',
@@ -139,7 +139,7 @@ export default function App() {
           <div className="hero-grid">
             <div>
               <p className="eyebrow">Étudiante en techniques de l'informatique</p>
-              <h1 className="hero-title">Bonjour, je suis Rose. 🌸</h1>
+              <h1 className="hero-title">Bonjour, je suis Rose Alexandra Cirius.</h1>
               <p className="hero-tagline">
                 Je suis une étudiante en informatique qui aime explorer le développement web,
                 les applications mobiles et la création numérique.
