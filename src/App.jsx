@@ -1,59 +1,105 @@
 import { useEffect } from 'react'
 
-/* -------------------- Un seul accent décoratif, discret -------------------- */
-
-const Flourish = () => (
-  <svg width="140" height="18" viewBox="0 0 180 24" aria-hidden="true" className="flourish">
-    <path d="M2 12C40 2 60 22 90 12S140 2 178 12" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
-    <circle cx="90" cy="12" r="3.5" fill="currentColor" />
-  </svg>
-)
-
-const Sakura = () => (
-  <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true" className="flourish sakura">
-    <g fill="var(--sakura)">
-      <path d="M20 2c4 0 5 4 3 7 3-2 7 0 6 4-1 3-5 3-7 2 2 3 0 7-4 7s-6-4-4-7c-2 1-6 1-7-2-1-4 3-6 6-4-2-3-1-7 3-7 1-1 2-1 4 0Z" />
-    </g>
-    <circle cx="20" cy="19" r="3" fill="var(--wine)" />
-  </svg>
-)
-
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
 /* ---------------------------- Data (contenu) ---------------------------- */
 
-const SKILLS_TECH = ['Java', 'Angular', 'Kotlin / Android', 'Unity & C#', 'Git & GitLab']
-const SKILLS_SOFT = ["Adaptabilité", 'Organisation', "Travail d'équipe", 'Communication efficace', 'Gestion de groupe', 'Courtoisie']
-
-const PROJECTS = [
-  {
-    name: 'The Fallen Angel',
-    role: 'Jeu Unity — plateforme 2D/3D',
-    text: "Jeu de plateforme publié sur itch.io, réalisé en équipe de trois. Résolution de conflits Git/GitLab, correction de bugs d'interface Unity.",
-    tags: ['Unity', 'C#', 'Git'],
-    link: 'https://itch.io',
-    linkLabel: 'Voir sur itch.io',
-  },
-  {
-    name: 'Mon Calendrier Santé et Fitness',
-    role: 'App Android — projet de cours',
-    text: 'Calendrier santé et fitness en équipe de trois (cours 420-G25-RO). Architecture MVP, migration complète de Room vers SQLiteOpenHelper, tests Mockito et Espresso.',
-    tags: ['Android', 'MVP', 'SQLite', 'Tests'],
-  },
-  {
-    name: 'AdBlock Browser',
-    role: 'App Android — Kotlin / WebView',
-    text: "Navigateur Android natif qui bloque publicités, popups et redirections forcées, né d'une extension navigateur repensée pour mobile.",
-    tags: ['Kotlin', 'WebView', 'Android'],
-  },
-]
-
 const NAV = [
   { id: 'accueil', label: 'Accueil' },
   { id: 'a-propos', label: 'À propos' },
-  { id: 'formation', label: 'Formation' },
   { id: 'projets', label: 'Projets' },
+  { id: 'competences', label: 'Compétences' },
   { id: 'contact', label: 'Contact' },
+]
+
+const DOMAINES = [
+  { titre: 'WEB', texte: 'Développement de sites et applications Web' },
+  { titre: 'MOBILE', texte: 'Applications Android avec Kotlin' },
+  { titre: 'GAME', texte: 'Création de jeux avec Unity' },
+  { titre: 'BACKEND', texte: 'Java · Spring Boot · API · SQL' },
+]
+
+const PROJECTS = [
+  {
+    categorie: 'DÉVELOPPEMENT WEB',
+    nom: 'Manara',
+    role: 'Cheffe d\u2019équipe',
+    images: [
+      { src: asset('manara-admin.png'), alt: 'Manara — tableau de bord administrateur' },
+      { src: asset('manara-parent.png'), alt: 'Manara — tableau de bord parent' },
+      { src: asset('manara-login.png'), alt: 'Manara — page de connexion' },
+    ],
+    description: "CRM de gestion des activités jeunesse pour un camp : familles, animateurs et administration dans une seule plateforme. Trois espaces distincts (admin, parent, animateur) avec gestion de sessions, activités, incidents et notifications par courriel.",
+    contribution: "Cheffe d'équipe : architecture du projet, coordination de l'équipe, et développement de plusieurs modules du backend et du frontend.",
+    tags: ['Spring Boot', 'Angular', 'MySQL', 'Spring Security', 'API REST'],
+    github: 'https://github.com/rosea-source',
+  },
+  {
+    categorie: 'APPLICATION MOBILE',
+    nom: 'Mon Calendrier Santé et Fitness',
+    role: 'Contribution partagée',
+    images: [
+      { src: asset('illus-coding.svg'), alt: 'Illustration : application mobile' },
+    ],
+    description: "Application Android de suivi d'activité physique et de poids : calendrier mensuel des séances, ajout de séances avec type/durée/intensité, historique et suivi du poids dans le temps.",
+    contribution: "Développement de l'écran d'accueil (calendrier mensuel, indicateurs, préférences) et de la base de données SQLite ; soutien sur l'écran d'ajout de séance.",
+    tags: ['Kotlin', 'Android Studio', 'SQLite', 'MVP'],
+    github: 'https://github.com/rosea-source/mon-calendrier-sante-et-fitness_Project',
+  },
+  {
+    categorie: 'JEU VIDÉO 2D/3D',
+    nom: 'The Fallen Angel',
+    role: 'Contribution partagée',
+    images: [
+      { src: 'https://img.itch.zone/aW1hZ2UvNDU5NTg5My8yNzQxNDI0NC5wbmc=/original/DJuz8B.png', alt: 'The Fallen Angel — capture 1' },
+      { src: 'https://img.itch.zone/aW1hZ2UvNDU5NTg5My8yNzQxNDI5NS5wbmc=/original/WUTPhN.png', alt: 'The Fallen Angel — capture 2' },
+      { src: 'https://img.itch.zone/aW1hZ2UvNDU5NTg5My8yNzQxNDI1My5wbmc=/original/wfFkMN.png', alt: 'The Fallen Angel — capture 3' },
+    ],
+    description: "Jeu de plateforme 2D/3D en 6 niveaux : un ange banni des cieux doit traverser l'Enfer, le Jardin d'Éden puis un Purgatoire façon Escape Room pour reconquérir ses ailes.",
+    contribution: "Développement en équipe de trois : conception de niveaux, résolution de conflits Git/GitLab, correction de bugs d'interface Unity.",
+    tags: ['Unity', 'C#', 'Git'],
+    link: 'https://xandraines.itch.io/the-fallen-angel',
+    linkLabel: 'Voir sur itch.io',
+  },
+]
+
+const APPRIS = [
+  { emoji: '🧩', titre: 'RÉSOLUTION DE PROBLÈMES', texte: 'Identifier les problèmes et chercher des solutions.' },
+  { emoji: '🔧', titre: 'DÉBOGAGE', texte: 'Analyser, corriger et améliorer une application existante.' },
+  { emoji: '🤝', titre: 'TRAVAIL D\u2019ÉQUIPE', texte: 'Collaborer sur des projets réalisés dans le cadre de ma formation.' },
+  { emoji: '📚', titre: 'APPRENTISSAGE', texte: 'Découvrir de nouvelles technologies et apprendre à les utiliser.' },
+  { emoji: '🚀', titre: 'DÉPLOIEMENT', texte: 'Mettre des projets en ligne et les rendre accessibles.' },
+]
+
+const EXPERIENCE = [
+  {
+    titre: 'Animatrice de camp de jour',
+    lieu: 'Camp Yopi',
+    date: 'Juin 2026 — Août 2026',
+    points: ["Conception et animation d'activités thématiques pour des groupes de 7 à 12 ans", 'Gestion de groupe et planification hebdomadaire en équipe'],
+  },
+  {
+    titre: 'Caissière',
+    lieu: 'Village des Valeurs, Saint-Léonard',
+    date: 'Août 2025 — Juin 2026',
+    points: ['Accueil et service à la clientèle', 'Organisation et présentation des produits'],
+  },
+  {
+    titre: 'Caissière',
+    lieu: 'Dollarama, Galerie d\u2019Anjou',
+    date: 'Août 2023 — Septembre 2024',
+    points: ['Accueil et service à la clientèle', 'Entretien et organisation de la zone de caisse'],
+  },
+]
+
+const SKILLS = [
+  { titre: 'Langages', items: ['Java', 'C#', 'Kotlin', 'JavaScript'] },
+  { titre: 'Web', items: ['HTML', 'CSS', 'Angular', 'API REST'] },
+  { titre: 'Backend', items: ['Java', 'Spring Boot', 'API REST'] },
+  { titre: 'Mobile', items: ['Kotlin', 'Android Studio'] },
+  { titre: 'Bases de données', items: ['SQL', 'MySQL / MariaDB'] },
+  { titre: 'Jeu vidéo', items: ['Unity', 'C#'] },
+  { titre: 'Outils', items: ['Git', 'GitHub', 'GitLab', 'Vercel'] },
 ]
 
 /* --------------------------------- App ---------------------------------- */
@@ -63,7 +109,7 @@ export default function App() {
     const els = document.querySelectorAll('.reveal')
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('in-view')),
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     )
     els.forEach((el) => io.observe(el))
     return () => io.disconnect()
@@ -81,154 +127,208 @@ export default function App() {
               <li key={n.id}><a href={`#${n.id}`}>{n.label}</a></li>
             ))}
           </ul>
+          <a className="btn btn-primary btn-nav-cv" href={asset('cv-rose-alexandra-cirius.pdf')} download>
+            Télécharger mon CV
+          </a>
         </nav>
       </header>
 
       <main>
         {/* -------------------------------- HERO -------------------------------- */}
         <section id="accueil" className="hero band band-cream">
-          <p className="eyebrow">Portfolio · 2026</p>
-          <h1 className="hero-title">Rose Alexandra Cirius</h1>
-          <p className="hero-tagline">
-            Étudiante en technique de l'informatique
-          </p>
-          <div className="hero-actions">
-            <a className="btn btn-primary" href="#projets">Voir mes projets</a>
-            <a className="btn btn-ghost" href="#contact">Me contacter</a>
+          <div className="hero-grid">
+            <div>
+              <p className="eyebrow">Étudiante en techniques de l'informatique</p>
+              <h1 className="hero-title">Bonjour, je suis Rose. 🌸</h1>
+              <p className="hero-tagline">
+                Je suis une étudiante en informatique qui aime explorer le développement web,
+                les applications mobiles et la création numérique.
+              </p>
+              <p className="hero-badge">À la recherche d'un stage en informatique</p>
+              <div className="hero-actions">
+                <a className="btn btn-primary" href="#projets">Voir mes projets</a>
+                <a className="btn btn-ghost" href={asset('cv-rose-alexandra-cirius.pdf')} download>Télécharger mon CV</a>
+              </div>
+            </div>
+            <div className="hero-illus">
+              <img src={asset('illus-coding.svg')} alt="Illustration : développement et créativité" />
+              <div className="hero-tags">
+                <span>Java • Kotlin</span>
+                <span>Web • Unity</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ----------------------------- DOMAINES --------------------------------- */}
+        <section className="section reveal band band-milk domaines">
+          <div className="domaine-grid">
+            {DOMAINES.map((d) => (
+              <div key={d.titre} className="domaine-card">
+                <h3>{d.titre}</h3>
+                <p>{d.texte}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* ------------------------------- A PROPOS ------------------------------ */}
-        <section id="a-propos" className="section reveal band band-milk">
-          <Flourish />
-          <h2 className="section-title">À propos</h2>
+        <section id="a-propos" className="section reveal band band-cream">
+          <h2 className="section-title">À propos de moi</h2>
           <div className="about-grid">
-            <div className="about-col">
+            <div className="about-text-col">
               <p className="about-text">
-                Autonome et enthousiaste, mes premières expériences m'ont permis de renforcer mes acquis
-                et d'apprivoiser différents outils et techniques. Je m'intègre facilement dans de
-                nouveaux contextes de travail grâce à un vrai esprit d'équipe et de bonnes capacités
-                d'écoute et de communication.
+                Je suis actuellement étudiante en Techniques de l'informatique au Cégep de Rosemont.
               </p>
-              <div className="skills">
-                <div className="skill-block">
-                  <h3>Technique</h3>
-                  <ul className="chip-list">
-                    {SKILLS_TECH.map((s) => <li key={s} className="chip">{s}</li>)}
-                  </ul>
-                </div>
-                <div className="skill-block">
-                  <h3>Savoir-être</h3>
-                  <ul className="chip-list">
-                    {SKILLS_SOFT.map((s) => <li key={s} className="chip chip-alt">{s}</li>)}
-                  </ul>
-                </div>
-                <div className="skill-block">
-                  <h3>Certifications & langues</h3>
-                  <ul className="chip-list">
-                    <li className="chip chip-alt">Secourisme général</li>
-                    <li className="chip chip-alt">Formation de gardiennage</li>
-                    <li className="chip chip-alt">Français — langue maternelle</li>
-                    <li className="chip chip-alt">Anglais — B2</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="about-art">
-              <img src={asset('illus-coding.svg')} alt="Illustration : personnage qui programme" />
-            </div>
-          </div>
-        </section>
-
-        {/* ------------------------------- FORMATION ------------------------------ */}
-        <section id="formation" className="section reveal band band-cream">
-          <Flourish />
-          <h2 className="section-title">Formation</h2>
-          <div className="formation-card">
-            <p className="formation-date">2024 — en cours</p>
-            <h3>Technique en informatique</h3>
-            <p className="formation-place">Collège de Rosemont</p>
-            <p className="formation-text">
-              En route vers un baccalauréat en génie des opérations et de la logistique.
-            </p>
-          </div>
-        </section>
-
-        {/* ---------------------------- RECHERCHE DE STAGE ------------------------ */}
-        <section id="stage" className="section reveal stage band band-milk">
-          <div className="stage-grid">
-            <img src={asset('illus-job-hunt.svg')} alt="Illustration : recherche d'opportunités" className="stage-illus" />
-            <div>
-              <h2 className="section-title section-title--left">Ouverte aux stages</h2>
-              <p className="stage-text">
-                Je suis actuellement à la recherche d'un stage en informatique — si mon profil t'intéresse,
-                n'hésite pas à me contacter.
+              <p className="about-text">
+                Au cours de ma formation, j'ai eu l'occasion de travailler sur différents types de
+                projets, allant du développement web aux applications mobiles et aux jeux vidéo.
               </p>
-              <a className="btn btn-primary" href="#contact">Me contacter</a>
+              <p className="about-text">
+                J'aime particulièrement les projets qui me permettent de combiner la technologie
+                et la créativité.
+              </p>
+            </div>
+            <div className="formation-card">
+              <p className="formation-eyebrow">FORMATION</p>
+              <h3>DEC — Techniques de l'informatique</h3>
+              <p className="formation-place">Cégep de Rosemont</p>
+              <p className="formation-eyebrow" style={{ marginTop: '18px' }}>DOMAINES</p>
+              <ul className="formation-list">
+                <li>Web</li>
+                <li>Mobile</li>
+                <li>Backend</li>
+                <li>Jeu vidéo</li>
+              </ul>
             </div>
           </div>
         </section>
 
         {/* -------------------------------- PROJETS ------------------------------- */}
-        <section id="projets" className="section reveal band band-cream">
-          <Flourish />
-          <h2 className="section-title">Projets</h2>
-          <div className="project-grid">
+        <section id="projets" className="section reveal band band-milk">
+          <h2 className="section-title">Mes projets</h2>
+          <p className="section-subtitle">
+            Quelques projets réalisés au cours de ma formation et de mes expérimentations personnelles.
+          </p>
+          <div className="project-list">
             {PROJECTS.map((p) => (
-              <article key={p.name} className="project-card">
-                <div className="project-card-top">
-                  <h3>{p.name}</h3>
-                  <p className="project-role">{p.role}</p>
+              <article key={p.nom} className="project-feature">
+                <div className="project-feature-media">
+                  {p.images.map((img) => (
+                    <img key={img.src} src={img.src} alt={img.alt} loading="lazy" />
+                  ))}
                 </div>
-                <p className="project-text">{p.text}</p>
-                <ul className="chip-list">
-                  {p.tags.map((t) => <li key={t} className="chip chip-sm">{t}</li>)}
-                </ul>
-                {p.link && (
-                  <a className="project-link" href={p.link} target="_blank" rel="noreferrer">
-                    {p.linkLabel} <span className="arrow">→</span>
-                  </a>
-                )}
+                <div className="project-feature-body">
+                  <p className="project-category">{p.categorie}</p>
+                  <h3>{p.nom}</h3>
+                  <p className="project-role">{p.role}</p>
+                  <p className="project-text">{p.description}</p>
+                  <p className="project-contribution"><strong>Ma contribution : </strong>{p.contribution}</p>
+                  <ul className="chip-list">
+                    {p.tags.map((t) => <li key={t} className="chip chip-sm">{t}</li>)}
+                  </ul>
+                  <div className="project-buttons">
+                    {p.link && (
+                      <a className="btn btn-primary" href={p.link} target="_blank" rel="noreferrer">{p.linkLabel}</a>
+                    )}
+                    {p.github && (
+                      <a className="btn btn-ghost" href={p.github} target="_blank" rel="noreferrer">GitHub</a>
+                    )}
+                  </div>
+                </div>
               </article>
             ))}
+          </div>
+          <div className="project-more">
+            <a className="btn btn-ghost" href="https://github.com/rosea-source" target="_blank" rel="noreferrer">
+              Voir tous mes projets →
+            </a>
+          </div>
+        </section>
 
-            <article className="project-card project-card--empty">
-              <h3>Prochain projet</h3>
-              <p className="project-text">Une place réservée pour ce qui s'en vient.</p>
-            </article>
+        {/* ---------------------------- CE QUE J'AI APPRIS ------------------------ */}
+        <section className="section reveal band band-cream">
+          <h2 className="section-title">Au fil de mes projets...</h2>
+          <div className="appris-grid">
+            {APPRIS.map((a) => (
+              <div key={a.titre} className="appris-card">
+                <span className="appris-emoji" aria-hidden="true">{a.emoji}</span>
+                <h3>{a.titre}</h3>
+                <p>{a.texte}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ------------------------------- EXPERIENCE ----------------------------- */}
+        <section className="section reveal band band-milk experience">
+          <h2 className="section-title">Expérience</h2>
+          <div className="experience-list">
+            {EXPERIENCE.map((e) => (
+              <div key={e.titre + e.lieu} className="experience-item">
+                <div className="experience-head">
+                  <h3>{e.titre}</h3>
+                  <span className="experience-date">{e.date}</span>
+                </div>
+                <p className="experience-place">{e.lieu}</p>
+                <ul>
+                  {e.points.map((pt) => <li key={pt}>{pt}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ---------------------------- COMPÉTENCES ------------------------------ */}
+        <section id="competences" className="section reveal band band-cream">
+          <h2 className="section-title">Compétences</h2>
+          <div className="skills-grid">
+            {SKILLS.map((s) => (
+              <div key={s.titre} className="skill-block">
+                <h3>{s.titre}</h3>
+                <ul className="chip-list">
+                  {s.items.map((i) => <li key={i} className="chip">{i}</li>)}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* -------------------------------- CONTACT ------------------------------- */}
         <section id="contact" className="section reveal contact band band-milk">
-          <Flourish />
-          <h2 className="section-title">Contact</h2>
+          <h2 className="section-title">Vous avez un stage à me proposer ?</h2>
           <p className="contact-text">
-            Une question, une offre, ou juste envie de jaser d'un projet ? Écris-moi.
+            J'aimerais avoir l'occasion de mettre mes compétences en pratique, de contribuer à des
+            projets concrets et de continuer à apprendre dans un environnement professionnel.
           </p>
           <div className="contact-links">
             <a href="mailto:rosealexandracirius@gmail.com" className="btn btn-primary">
-              rosealexandracirius@gmail.com
+              ✉ rosealexandracirius@gmail.com
             </a>
             <a
               href="https://www.linkedin.com/in/rose-alexandra-cirius-1197b1218"
               target="_blank" rel="noreferrer" className="btn btn-ghost"
             >
-              LinkedIn
+              🔗 LinkedIn
             </a>
             <a
-              href="https://github.com/"
+              href="https://github.com/rosea-source"
               target="_blank" rel="noreferrer" className="btn btn-ghost"
             >
-              GitHub
+              💻 GitHub
             </a>
-            
           </div>
         </section>
       </main>
 
       <footer className="footer band band-cream">
-        <p>Rose Alexandra Cirius — {new Date().getFullYear()}</p>
+        <p className="footer-brand">ROSE ALEXANDRA</p>
+        <p>© 2026 Rose Alexandra Cirius</p>
+        <div className="footer-links">
+          <a href="https://github.com/rosea-source" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/rose-alexandra-cirius-1197b1218" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="mailto:rosealexandracirius@gmail.com">Email</a>
+        </div>
       </footer>
     </>
   )
